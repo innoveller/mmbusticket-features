@@ -5,6 +5,7 @@ Search trips with criteria
 Background:
   Given John is on the home page
 
+@website
 Scenario: Default values on the search form
   Given John have not previously performed any searches on his device
   When the home page loads
@@ -14,7 +15,6 @@ Scenario: Default values on the search form
   And the maximum number of selectable seats should be 4
   And the past dates should not be selectable
   And the dates two months from today should not be selectable
-
 
 Scenario Outline: Attempt search with missing required field
     Given John have selected all required fields except for "<Field>"
