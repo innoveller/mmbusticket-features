@@ -3,7 +3,7 @@ Feature: Search Form on Website
 Search trips with criteria
 
 Background:
-  Given John is on the home page
+  Given John is on the home page of MMBusTicket website
 
 @website
 Scenario: Default values on the search form fields
