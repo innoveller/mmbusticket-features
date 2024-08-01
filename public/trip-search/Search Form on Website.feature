@@ -6,7 +6,7 @@ Background:
   Given John is on the home page
 
 @website
-Scenario: Default values on the search form
+Scenario: Default values on the search form fields
   Given John have not previously performed any searches on his device
   When the home page loads
   Then John should see the search form on the home page
