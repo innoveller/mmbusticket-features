@@ -29,8 +29,8 @@ Scenario Outline: Attempt search with missing required field
 
 
 Scenario: Search for express bus trips with identical departure and destination locations
-    Given I have selected "Mandalay" as the departure location
-    And I have selected "Mandalay" as the destination location
+    Given I have selected "Yangon" as the departure location
+    And I have selected "Yangon" as the destination location
     And I have selected a valid departure date
     When I click the search button
     Then I should see a warning message indicating that the departure and destination locations cannot be the same
