@@ -1,7 +1,7 @@
 Feature: Search Results on Website
 
 Background:
-  Given John is on the booking website
+  Given John is on the mmbusticket website
   And John filled in search form with valid inputs
 
 
