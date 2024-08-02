@@ -31,3 +31,15 @@ Feature: MMBusTicket Website Home Page
     When he clicks on a partner express bus line logo
     Then he should be redirected to a page with detailed information about that bus line
     And the page should include information such as routes, schedules, amenities, and contact details
+
+  Scenario: Viewing the "How to Easily Buy a Bus Ticket" Video Popup
+    Given John is on the home page
+    Then he should see a button labeled "How to Easily Buy a Bus Ticket"
+    When John clicks the "How to Easily Buy a Bus Ticket" button
+    Then a popup should appear with the video tutorial
+    And the popup should have a title "How to Easily Buy a Bus Ticket"
+    And the popup should display the video tutorial
+    And the video should be playable directly within the popup
+    And the popup should have a close button
+    When John clicks the close button
+    Then the popup should close and return John to the home page
