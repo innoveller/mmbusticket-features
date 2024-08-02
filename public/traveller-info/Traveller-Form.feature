@@ -1,4 +1,4 @@
-Feature: Seat Reservation
+Feature: Traveller Info Collection
 
 Background:
     Given John has reserved a seat
