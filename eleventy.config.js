@@ -1,4 +1,8 @@
+import eleventyNavigationPlugin from "@11ty/eleventy-navigation";
+
 export default function (eleventyConfig) {
+    eleventyConfig.addPlugin(eleventyNavigationPlugin);
+
 	// Add as a valid extension to process
 	// Alternatively, add this to the list of formats you pass to the `--formats` CLI argument
 	eleventyConfig.addTemplateFormats("feature");
