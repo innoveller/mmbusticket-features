@@ -1,8 +1,11 @@
 import eleventyNavigationPlugin from "@11ty/eleventy-navigation";
+import exportDirectoryTree from './plugins/sitemapgen.js';
+import path from 'path';
 
 export default function (eleventyConfig) {
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
 
+    /*
 	// Add as a valid extension to process
 	// Alternatively, add this to the list of formats you pass to the `--formats` CLI argument
 	eleventyConfig.addTemplateFormats("feature");
@@ -24,6 +27,17 @@ export default function (eleventyConfig) {
 				return output;
 			};
 		},
-	});
-};
+	});*/
 
+    //eleventyConfig.addPassthroughCopy("**/*.feature");
+    //eleventyConfig.addPassthroughCopy("feature");
+
+    /*eleventyConfig.addCollection("debugAll", function (collection) {
+        console.log("debug collection", collection.getAll()); // Check if feature files are included
+        return collection.getAll();
+      }); */
+
+    const dirPath = path.join(process.cwd(), 'features');
+    const outputFilePath = path.join(process.cwd(), '_site/files.json');
+    exportDirectoryTree(dirPath, outputFilePath);
+};
