@@ -1,6 +1,4 @@
 import eleventyNavigationPlugin from "@11ty/eleventy-navigation";
-import exportDirectoryTree from './plugins/sitemapgen.js';
-import path from 'path';
 
 export default function (eleventyConfig) {
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
@@ -30,14 +28,16 @@ export default function (eleventyConfig) {
 	});*/
 
     //eleventyConfig.addPassthroughCopy("**/*.feature");
+    
     //eleventyConfig.addPassthroughCopy("feature");
+    eleventyConfig.addPassthroughCopy({ "features": "features"});
 
     /*eleventyConfig.addCollection("debugAll", function (collection) {
         console.log("debug collection", collection.getAll()); // Check if feature files are included
         return collection.getAll();
       }); */
 
-    const dirPath = path.join(process.cwd(), 'features');
-    const outputFilePath = path.join(process.cwd(), '_site/files.json');
-    exportDirectoryTree(dirPath, outputFilePath);
+    //const dirPath = path.join(process.cwd(), 'features');
+    //const outputFilePath = path.join(process.cwd(), '_site/sidebar.html');
+    //exportDirectoryTree(dirPath, outputFilePath);
 };
