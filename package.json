@@ -12,8 +12,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@11ty/eleventy": "^3.0.0",
-    "@11ty/eleventy-navigation": "^1.0.1",
-    "nunjucks": "^3.2.4"
+    "@11ty/eleventy": "^3.0.0"
   }
 }

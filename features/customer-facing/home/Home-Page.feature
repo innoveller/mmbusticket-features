@@ -1,20 +1,22 @@
 Feature: MMBusTicket Website Home Page
 
   Scenario: Viewing the Home Page
-    Given John navigates to the bus ticketing website home page
+    Given John opens the bus ticketing website
+    When the home page loads
     Then he should see the website's logo
-    And he should see the top navigation links to "Home", "Print Ticket", "Contact", and "Language"
-    And he should see the option to change the language between English and Myanmar
-    And he should see the trip search form
-    And he should see promotional banners or offers
+    And the top navigation should include "Home", "Print Ticket", "Contact", and "Language"
+    And he should be able to switch the language between English and Myanmar
+    And the trip search form should be visible
+    And promotional banners or offers should be displayed
 
   Scenario: Viewing the Footer
     Given John is on the home page
+    When he scrolls to the bottom of the page
     Then he should see the footer section
-    And the footer should contain the support hotline number
-    And the footer should contain a support messenger link
-    And the footer should include links to "Privacy Policy" and "Terms of Service"
-
+    And it should display the support hotline number
+    And it should provide a support messenger link
+    And it should include links to "Privacy Policy" and "Terms of Service"
+    
   Scenario: Displaying Available Payment Methods on the Home Page
     Given John is on the home page
     Then he should see a section for available payment methods
