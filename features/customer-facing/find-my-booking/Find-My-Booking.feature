@@ -1,45 +1,60 @@
-Feature: MMBusTicket Website Home Page
+Feature: MMBusTicket website Find My Booking
 
-  Scenario: Viewing the Home Page
-    Given John navigates to the bus ticketing website home page
-    Then he should see the website's logo
-    And he should see the top navigation links to "Home", "Print Ticket", "Contact", and "Language"
-    And he should see the option to change the language between English and Myanmar
-    And he should see the trip search form
-    And he should see promotional banners or offers
+    Background:
+        Given John is on the home page of MMBusTicket website
+        And John has made a complete booking
 
-  Scenario: Viewing the Footer
-    Given John is on the home page
-    Then he should see the footer section
-    And the footer should contain the support hotline number
-    And the footer should contain a support messenger link
-    And the footer should include links to "Privacy Policy" and "Terms of Service"
+    Scenario: Viewing Find My Booking page
+        Given John navigates to the find my booking Feature
+        Then he should see the website's logo
+        And he should see the top navigation links to "Home", "Print Your Ticket", "Help", "FAQ" and "Language" option
+        And he should see booking search form
+        And he should see the footer
 
-  Scenario: Displaying Available Payment Methods on the Home Page
-    Given John is on the home page
-    Then he should see a section for available payment methods
-    And the section should prominently display logos of all accepted payment methods
+    Scenario: Default values on the booking search form fields
+        Given John has navigated to the find my booking page
+        Then he should see the booking search form with mendatory fields and "Retrieve Booking" button
+        And "From", "To", "Departure Date" and "Phone Number" fields should be empty
+        And each field should have its respective placeholder text.
 
-  Scenario: Viewing Partner Express Bus Lines
-    Given John is on the home page
-    Then he should see a section for partner express bus lines
-    And the section should prominently display the logos of major partner bus lines
-    And each logo should be clickable to view more details about the partner bus line
+    Scenario: Find booking with missing required field
+        Given John is on the find my booking page
+        And he has entered all required fields except for "<Field>"
+        When John clicks the Retrieve Booking button
+        Then he should see a warning message indication that "<Field>" is required.
+        Examples:
+            | Field          |
+            | From           |
+            | To             |
+            | Departure Date |
+            | Phone Number   |
 
-  Scenario: Viewing Details of a Partner Express Bus Line
-    Given John is on the home page
-    When he clicks on a partner express bus line logo
-    Then he should be redirected to a page with detailed information about that bus line
-    And the page should include information such as routes, schedules, amenities, and contact details
+    Scenario: Find booking with invalid inputs
+        Given John is on the find my booking page
+        And he has entered all required fields but invalid input for "<Field>"
+        When John clicks the Retrieve Booking button
+        Then he should see the message, "No Booking Found."
+        Examples:
+            | Field          |
+            | From           |
+            | To             |
+            | Departure Date |
+            | Phone Number   |
 
-  Scenario: Viewing the "How to Easily Buy a Bus Ticket" Video Popup
-    Given John is on the home page
-    Then he should see a button labeled "How to Easily Buy a Bus Ticket"
-    When John clicks the "How to Easily Buy a Bus Ticket" button
-    Then a popup should appear with the video tutorial
-    And the popup should have a title "How to Easily Buy a Bus Ticket"
-    And the popup should display the video tutorial
-    And the video should be playable directly within the popup
-    And the popup should have a close button
-    When John clicks the close button
-    Then the popup should close and return John to the home page
+    Scenario: Find booking with valid inputs
+        Given John is on the find my booking page
+        And he has entered all required fields with valid inputs according to his completed booking
+        When he clicks the Retrieve Booking button
+        Then he should see the booking(s) list he has done with the information:
+            | Route               |
+            | Departure Time      |
+            | Bus Operator        |
+            | Number of Seats     |
+            | Total               |
+            | View Details button |
+
+    Scenario: Clicking View Details button
+        Given John has searched his booking by providing all required fields with valid inputs
+        And the system displays the booking list
+        When John clicks on the View Details button of a booking
+        Then he should be navigated to Confirm page of that booking ID
