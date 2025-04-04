@@ -12,16 +12,16 @@ Feature: MMBusTicket website Find My Booking
         And he should see the footer
 
     Scenario: Default values on the booking search form fields
-        Given John has navigated to the find my booking page
+        Given John is on the find my booking page
         Then he should see the booking search form with mendatory fields and "Retrieve Booking" button
         And "From", "To", "Departure Date" and "Phone Number" fields should be empty
-        And each field should have its respective placeholder text.
+        
 
     Scenario: Find booking with missing required field
         Given John is on the find my booking page
-        And he has entered all required fields except for "<Field>"
+        And he has entered all required fields except for "(Field)"
         When John clicks the Retrieve Booking button
-        Then he should see a warning message indication that "<Field>" is required.
+        Then he should see a warning message indicating that "(Field)" is required.
         Examples:
             | Field          |
             | From           |
@@ -29,11 +29,11 @@ Feature: MMBusTicket website Find My Booking
             | Departure Date |
             | Phone Number   |
 
-    Scenario: Find booking with invalid inputs
+    Scenario: Find booking with search data, where the user used different data during booking
         Given John is on the find my booking page
-        And he has entered all required fields but invalid input for "<Field>"
+        And he has entered all required fields but invalid input for "(Field)"
         When John clicks the Retrieve Booking button
-        Then he should see the message, "No Booking Found."
+        Then he should see the message indicating there is no booking for search criteria
         Examples:
             | Field          |
             | From           |
@@ -58,3 +58,4 @@ Feature: MMBusTicket website Find My Booking
         And the system displays the booking list
         When John clicks on the View Details button of a booking
         Then he should be navigated to Confirm page of that booking ID
+        

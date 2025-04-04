@@ -30,6 +30,7 @@ Feature: Payment Selection
     Then a field to enter the promo code should be displayed
     And John should be able to enter and apply a promo code
     And the total amount should be updated to reflect the promo code discount if applicable
+    But proper validation message should be displayed for empty or invalid promo code
 
   Scenario: Viewing Terms and Conditions
     Given John has selected a payment method
@@ -43,3 +44,8 @@ Feature: Payment Selection
     When John clicks on the button to switch back to viewing all payment methods
     Then the screen should display all available payment methods again
     And John should be able to select a different payment method
+
+  Scenario: Duplicate payments
+    Given John has completed a payment
+    When John tries to make another payment for the same booking
+    Then the system should prevent duplicate payments and display a message indicating a payment already exists

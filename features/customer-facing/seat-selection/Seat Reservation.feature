@@ -20,13 +20,18 @@ Scenario: Select a single seat
     Given John has not make any seat selection
     When John select a single available seat
     Then the selected seat should be highlighted on the seat plan
-    And the seat details should be displayed 
+    And the seat details should be displayed in trip summary section
     And the button to reserve the seats and go to next step should be active
+
+    Given John has selected a seat
+    And the trip requires John to select a seat
+    When John select another available seat
+    Then the available seat cannot be selected
 
     Given John has selected a seat
     When John deselects the selected seat
     Then the deselected seat should no longer be highlighted and look available again
-    And the seat details should disappear
+    And the seat details should disappear in trip summary section
     And the button to reserve the seats and go to the next step should be inactive
 
 
@@ -35,28 +40,28 @@ Scenario: Select multiple seats
     And the trip requires John to select two seats
     When John select a single available seat
     Then the selected seat should be highlighted on the seat plan
-    And the seat details should be displayed 
+    And the seat details should be displayed in trip summary section
     And the button to reserve the seats and go to next step should remain in-active
 
     Given John has selected a seat
     And the trip requires John to select two seats
     When John select another available seat
     Then the selected seat should be highlighted on the seat plan
-    And there are two hilighted seats on the seat plan
-    And the seat details for two seats should be displayed 
-    And the button to reserve the seats and go to the next step should becomes active
+    And there are two highlighted seats on the seat plan
+    And the seat details for two seats should be displayed in trip summary section
+    And the button to reserve the seats and go to the next step should become active
 
     Given John has selected two seats
     And the trip requires John to select two seats
     When John try to select another available seat
-    Then the avaiable seat cannot be selected
+    Then the available seat cannot be selected
 
     Given John has selected two seats
     And the trip requires John to select two seats
     When John deselects a selected seat
     Then the deselected seat should no longer be highlighted and look available again
-    And there is still one hilighted seat on the seat plan
-    And the seat details for the selected seats still should be displayed
+    And there is still one highlighted seat on the seat plan
+    And the seat details for the selected seats still should be displayed in trip summary section
     And the button to reserve and go to the next step should be inactive
 
 

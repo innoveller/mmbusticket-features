@@ -6,7 +6,7 @@ Background:
 
 
 Scenario: Showing primary and secondary info in trip results
-    Given John has made a search
+    Given John has made a trip search
     When bus trip results are displayed
     Then each result must prominently display:
       | Primary Info      |
@@ -22,7 +22,7 @@ Scenario: Showing primary and secondary info in trip results
 
 
 Scenario Outline: Showing Time period label for trip results
-  Given John has search 
+  Given John has made a trip search 
   And the results are on display  
   When John check the time period for each trip result  
   Then The trip result at <Departure Time> should be labelled as <Time Period Bus>
@@ -75,3 +75,28 @@ Examples:
   | XYZ Express | Yangon | Mandalay    | Foreigner   | Tomorrow       | 10:00 AM       | 25,000|
   
 
+Scenario: Viewing the filter sections
+  Given John has made a trip search
+  When the system displays the trip results
+  Then John should see the filters sections on the left side
+  And each section should display clearly and prominently with selectable options
+    | Departure Time filter |
+    | Any Time              |
+    | Morning               |
+    | Afternoon             |
+    | Evening/Night         |
+
+    | Bus Operator filter            |
+    | Any Bus                        |
+    | Other available operator names |
+  And the displayed trip results should update according to the applied filters
+
+
+Scenario: Check the display message for bus status based on bus type (small or normal)
+  Given John has made a search
+  When the system displays the trip results
+  Then the system should display the <Display Message> clearly for the <Bus Type>
+Examples
+  | Bus Type  | Display Message   | Seat Selection Statis
+  | Small Car | ကားလေး (ကြိုပို့)    | Cannot choose desired seats
+  | Normal Bus| Choose Your Seats | Can choose desired seats
