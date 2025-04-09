@@ -25,7 +25,7 @@ Scenario Outline: Showing Time period label for trip results
   Given John has made a trip search 
   And the results are on display  
   When John check the time period for each trip result  
-  Then The trip result at <Departure Time> should be labelled as <Time Period Bus>
+  Then The trip result at [Departure Time] should be labelled as [Time Period Bus]
 
 Examples:
   | Departure Time | Time Period Bus |
@@ -59,13 +59,13 @@ Scenario: No trip exists on a particular date
 
 # This scenario shows that depending on operators and routes, local and foreigner prices may or may not differ
 Scenario Outline: Different ticket prices for local and foreign travelers
-  Given The trip operator by <Operator> from <Source> to <Mandalay> at <Departrue Time> 
-  And John has selected a departure location <Source> and a destination location <Destination>
-  And John have set the traveller nationality to <Nationality>
-  And John have set the departure date as <Departrue Date>
+  Given The trip operator by [Operator] from [Source] to [Mandalay] at [Departrue Time] 
+  And John has selected a departure location [Source] and a destination location [Destination]
+  And John have set the traveller nationality to [Nationality]
+  And John have set the departure date as [Departrue Date]
   When John search for available trips
   And I check the ticket price for a selected trip
-  Then the ticket price for <Operator> at <Departure Time> should be <Price>
+  Then the ticket price for [Operator] at [Departure Time] should be [Price]
 
 Examples:
   | Operator    | Source | Destination | Nationality | Departure Date | Departure Time | Price |
@@ -95,8 +95,8 @@ Scenario: Viewing the filter sections
 Scenario: Check the display message for bus status based on bus type (small or normal)
   Given John has made a search
   When the system displays the trip results
-  Then the system should display the <Display Message> clearly for the <Bus Type>
+  Then the system should display the [Display Message] clearly for the [Bus Type]
 Examples
-  | Bus Type  | Display Message   | Seat Selection Statis
+  | Bus Type  | Display Message   | Seat Selection Status
   | Small Car | ကားလေး (ကြိုပို့)    | Cannot choose desired seats
   | Normal Bus| Choose Your Seats | Can choose desired seats

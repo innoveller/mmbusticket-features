@@ -28,4 +28,10 @@ Scenario: Phone Number field validation for maximum length limit
     Then he should see an error message saying that the phone number is invalid
     And the form should not be submitted
 
+Scenario: Email field format validation 
+    Given John has entered the email which doesn't include '@' or '.'
+    When John submits the format
+    Then he should see an error message indicating the email format is invalid
+    And the form should not be submitted
+
 
